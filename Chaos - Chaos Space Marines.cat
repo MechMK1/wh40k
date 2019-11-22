@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<catalogue id="cb54-c035-5759-7697" name="Chaos - Chaos Space Marines" revision="112" battleScribeVersion="2.03" authorName="BSData Developers" authorContact="@Mad_Spy" authorUrl="https://discord.gg/KqPVhds" library="false" gameSystemId="28ec-711c-d87f-3aeb" gameSystemRevision="1" xmlns="http://www.battlescribe.net/schema/catalogueSchema">
+<catalogue id="cb54-c035-5759-7697" name="Chaos - Chaos Space Marines" revision="113" battleScribeVersion="2.03" authorName="BSData Developers" authorContact="@Mad_Spy" authorUrl="https://discord.gg/KqPVhds" library="false" gameSystemId="28ec-711c-d87f-3aeb" gameSystemRevision="1" xmlns="http://www.battlescribe.net/schema/catalogueSchema">
   <publications>
     <publication id="cb54-c035-pubN85174" name="Escalation"/>
     <publication id="cb54-c035-pubN125652" name="Codex: Heretic Astartes - Chaos Space Marines"/>
@@ -71,6 +71,7 @@
     <categoryEntry id="0385-8978-4a91-7695" name="Sorcerer" hidden="false"/>
     <categoryEntry id="0f07-4225-76e2-c25e" name="Chosen" hidden="false"/>
     <categoryEntry id="a923-d468-2a1f-3abe" name="Termite Assault Drill" hidden="false"/>
+    <categoryEntry id="91f7-010e-56be-e4a3" name="Priest" hidden="false"/>
   </categoryEntries>
   <forceEntries>
     <forceEntry id="f733-c79b-0ac7-764e" name="Testing Detachment" hidden="false">
@@ -2391,7 +2392,8 @@ If this unit makes a charge move, is charged or performs a Heroic Intervention, 
         <categoryLink id="7514-2ccf-32bc-c446" name="New CategoryLink" hidden="false" targetId="ca10-a5dd-f54f-0ed5" primary="false"/>
         <categoryLink id="58c0-d9c2-b03d-fc7f" name="New CategoryLink" hidden="false" targetId="3d52-fccf-10c0-3fae" primary="false"/>
         <categoryLink id="59b8-69ea-80ad-2118" name="New CategoryLink" hidden="false" targetId="b2b6-8e4a-9c74-cc37" primary="false"/>
-        <categoryLink id="0285-2924-4be5-8c7d" name="Dark Apostle" hidden="false" targetId="a459-6417-3709-336c" primary="false"/>
+        <categoryLink id="3991-3317-f1f4-8f48" name="Priest" hidden="false" targetId="91f7-010e-56be-e4a3" primary="false"/>
+        <categoryLink id="5764-658f-3671-8b33" name="Dark Apostle" hidden="false" targetId="a459-6417-3709-336c" primary="false"/>
       </categoryLinks>
       <selectionEntries>
         <selectionEntry id="6293-ebad-6cfa-0c6a" name="Council of Traitors" hidden="false" collective="false" import="true" type="upgrade">
@@ -2410,6 +2412,29 @@ If this unit makes a charge move, is charged or performs a Heroic Intervention, 
             <cost name=" PL" typeId="e356-c769-5920-6e14" value="0.0"/>
             <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="0.0"/>
             <cost name="pts" typeId="points" value="0.0"/>
+          </costs>
+        </selectionEntry>
+        <selectionEntry id="0ecd-8978-1653-e888" name="Apostle of the Dark Council" hidden="false" collective="false" import="true" type="upgrade">
+          <modifiers>
+            <modifier type="set" field="hidden" value="true">
+              <conditions>
+                <condition field="selections" scope="force" value="0.0" percentValue="false" shared="true" includeChildSelections="true" includeChildForces="false" childId="2482-8e16-78b0-e9cd" type="equalTo"/>
+              </conditions>
+            </modifier>
+          </modifiers>
+          <constraints>
+            <constraint field="selections" scope="parent" value="1.0" percentValue="false" shared="true" includeChildSelections="false" includeChildForces="false" id="0c14-96e7-3299-121d" type="max"/>
+            <constraint field="selections" scope="roster" value="1.0" percentValue="false" shared="true" includeChildSelections="true" includeChildForces="false" id="86d0-6d44-989e-f40f" type="max"/>
+          </constraints>
+          <profiles>
+            <profile id="bb52-14e3-85ab-11bc" name="Dark Council" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">This model knows one additional prayer from th Prayers to the Dark Gods, and can chant one additional prayer at the start of the battle round.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+          <costs>
+            <cost name="CP" typeId="2d3b-b544-ad49-fb75" value="-1.0"/>
           </costs>
         </selectionEntry>
       </selectionEntries>
@@ -2460,7 +2485,7 @@ If this unit makes a charge move, is charged or performs a Heroic Intervention, 
         </entryLink>
         <entryLink id="a861-c777-158b-397b" name="Prayers to the Dark Gods" hidden="false" collective="false" import="true" targetId="72ec-40a1-26f1-a46e" type="selectionEntryGroup">
           <modifiers>
-            <modifier type="set" field="3f50-a803-4913-8f68" value="2">
+            <modifier type="increment" field="3f50-a803-4913-8f68" value="1.0">
               <conditionGroups>
                 <conditionGroup type="and">
                   <conditions>
@@ -2469,6 +2494,11 @@ If this unit makes a charge move, is charged or performs a Heroic Intervention, 
                   </conditions>
                 </conditionGroup>
               </conditionGroups>
+            </modifier>
+            <modifier type="increment" field="3f50-a803-4913-8f68" value="1.0">
+              <conditions>
+                <condition field="selections" scope="d630-2b65-3996-c1a3" value="1.0" percentValue="false" shared="true" includeChildSelections="true" includeChildForces="false" childId="0ecd-8978-1653-e888" type="equalTo"/>
+              </conditions>
             </modifier>
           </modifiers>
           <constraints>
@@ -15449,6 +15479,45 @@ If this unit makes a charge move, is charged or performs a Heroic Intervention, 
             <entryLink id="a0e9-df31-00f3-8bc5" name="Spineshiver Blade" hidden="false" collective="false" import="true" targetId="9f34-7e6e-592b-c7ae" type="selectionEntry"/>
           </entryLinks>
         </selectionEntryGroup>
+        <selectionEntryGroup id="d574-cb37-a890-8d67" name="Word Bearers" hidden="false" collective="false" import="true">
+          <modifiers>
+            <modifier type="set" field="hidden" value="true">
+              <conditions>
+                <condition field="selections" scope="force" value="0.0" percentValue="false" shared="true" includeChildSelections="true" includeChildForces="false" childId="2482-8e16-78b0-e9cd" type="equalTo"/>
+              </conditions>
+            </modifier>
+          </modifiers>
+        </selectionEntryGroup>
+        <selectionEntryGroup id="5422-f389-655b-dae6" name="Night Lords" hidden="false" collective="false" import="true">
+          <modifiers>
+            <modifier type="set" field="hidden" value="true">
+              <conditions>
+                <condition field="selections" scope="force" value="0.0" percentValue="false" shared="true" includeChildSelections="true" includeChildForces="false" childId="01f7-d7f1-be88-b861" type="equalTo"/>
+              </conditions>
+            </modifier>
+          </modifiers>
+          <constraints>
+            <constraint field="selections" scope="parent" value="1.0" percentValue="false" shared="true" includeChildSelections="false" includeChildForces="false" id="8017-6f7e-9e68-a939" type="max"/>
+          </constraints>
+          <selectionEntries>
+            <selectionEntry id="d6b4-34a0-3640-9d9b" name="Vox Daemonicus" hidden="false" collective="false" import="true" type="upgrade">
+              <modifiers>
+                <modifier type="set" field="hidden" value="true">
+                  <conditions>
+                    <condition field="selections" scope="ancestor" value="0.0" percentValue="false" shared="true" includeChildSelections="false" includeChildForces="false" childId="3d52-fccf-10c0-3fae" type="notInstanceOf"/>
+                  </conditions>
+                </modifier>
+              </modifiers>
+              <profiles>
+                <profile id="dfab-4901-2b00-50e7" name="Vox Daemonicus" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+                  <characteristics>
+                    <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">Whilst an enemy unit is within 6&quot; of a model with this Relic, reduce the range of that unit&apos;s aura abilities to 1&quot;. In addition, enemy units that are set up on the battlefield as reinforcements cannot be set up within 12&quot; of a model with this Relic.</characteristic>
+                  </characteristics>
+                </profile>
+              </profiles>
+            </selectionEntry>
+          </selectionEntries>
+        </selectionEntryGroup>
       </selectionEntryGroups>
     </selectionEntryGroup>
     <selectionEntryGroup id="961b-1b26-a347-2982" name="Biker Champion Equipment" hidden="false" collective="false" import="true">
@@ -15773,6 +15842,8 @@ If this unit makes a charge move, is charged or performs a Heroic Intervention, 
         <entryLink id="55e4-a0d3-e93f-d682" name="Warlord Traits (Shadowspear)" hidden="false" collective="false" import="true" targetId="8144-d21c-4c9e-aa1d" type="selectionEntryGroup"/>
         <entryLink id="f255-06fe-f3dd-a8e0" name="Warlord Traits (Specialist)" hidden="false" collective="false" import="true" targetId="b18e-298b-df58-c375" type="selectionEntryGroup"/>
         <entryLink id="f83b-1902-9451-a436" name="Warlord Traits (Black Legion)" hidden="false" collective="false" import="true" targetId="d93d-deaf-d76d-c442" type="selectionEntryGroup"/>
+        <entryLink id="a9fc-2d5f-af2d-6b78" name="Warlord Traits (Word Bearers)" hidden="false" collective="false" import="true" targetId="64b5-eb3e-64d6-f254" type="selectionEntryGroup"/>
+        <entryLink id="78bb-cce0-fda7-00c0" name="Warlord Traits (Word Bearers)" hidden="false" collective="false" import="true" targetId="bdd0-1dc8-dea5-8411" type="selectionEntryGroup"/>
       </entryLinks>
     </selectionEntryGroup>
     <selectionEntryGroup id="75bd-3046-2e64-6b81" name="Warlord Traits (Legion)" hidden="false" collective="false" import="true">
@@ -17248,6 +17319,38 @@ If this unit makes a charge move, is charged or performs a Heroic Intervention, 
           </entryLinks>
         </selectionEntryGroup>
       </selectionEntryGroups>
+    </selectionEntryGroup>
+    <selectionEntryGroup id="64b5-eb3e-64d6-f254" name="Warlord Traits (Night Lords)" hidden="false" collective="false" import="true">
+      <constraints>
+        <constraint field="selections" scope="parent" value="1.0" percentValue="false" shared="true" includeChildSelections="false" includeChildForces="false" id="b02e-3cc2-e77f-c911" type="max"/>
+      </constraints>
+      <selectionEntries>
+        <selectionEntry id="ac8b-f74b-9d3c-7da3" name="Example" hidden="false" collective="false" import="true" type="upgrade">
+          <profiles>
+            <profile id="e776-fb80-000d-3cde" name="Daemonic Whispers" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">If your army is Battle-forged, roll one D3 before the battle begins; you gain a number of additional Command Points equal to the result. Once per battle, if this Warlord is on the battlefield, you can re-roll a single hit roll, wound roll, damage roll or saving throw.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+        </selectionEntry>
+      </selectionEntries>
+    </selectionEntryGroup>
+    <selectionEntryGroup id="bdd0-1dc8-dea5-8411" name="Warlord Traits (Word Bearers)" hidden="false" collective="false" import="true">
+      <constraints>
+        <constraint field="selections" scope="parent" value="1.0" percentValue="false" shared="true" includeChildSelections="false" includeChildForces="false" id="8187-c9d8-8f9d-2163" type="max"/>
+      </constraints>
+      <selectionEntries>
+        <selectionEntry id="39dc-7c62-aa80-e82c" name="Daemonic Whispers" hidden="false" collective="false" import="true" type="upgrade">
+          <profiles>
+            <profile id="1b14-32b5-48c6-eeed" name="Daemonic Whispers" hidden="false" typeId="72c5eafc-75bf-4ed9-b425-78009f1efe82" typeName="Abilities">
+              <characteristics>
+                <characteristic name="Description" typeId="21befb24-fc85-4f52-a745-64b2e48f8228">If your army is Battle-forged, roll one D3 before the battle begins; you gain a number of additional Command Points equal to the result. Once per battle, if this Warlord is on the battlefield, you can re-roll a single hit roll, wound roll, damage roll or saving throw.</characteristic>
+              </characteristics>
+            </profile>
+          </profiles>
+        </selectionEntry>
+      </selectionEntries>
     </selectionEntryGroup>
   </sharedSelectionEntryGroups>
   <sharedRules>
